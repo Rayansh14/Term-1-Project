@@ -61,8 +61,7 @@ print("Score: 0\n")
 
 while True:
 
-    user_input = input("What's your move: ")
-    user_input.lower()
+    user_input = input("What's your move: ").lower()
     if user_input == "quit":
         break
     if not is_valid(user_input):
