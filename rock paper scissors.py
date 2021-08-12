@@ -76,7 +76,7 @@ while True:
         user_input = "rock"
     elif user_input == "s":
         user_input = "scissors"
-    else:
+    elif user_input == "p":
         user_input = "paper"
         
     comp_choice = generate_random()
