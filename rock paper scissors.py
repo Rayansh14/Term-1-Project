@@ -13,29 +13,26 @@ def is_valid(user_move):
 
 
 def result(comp_move, user_move):
+    if comp_move == user_move:
+        return "tie"
+    
     if comp_move == "rock":
-        if user_move == "rock" or user_move == "r":
-            return "tie"
-        elif user_move == "paper" or user_move == "p":
+        if user_move == "paper":
             return "user"
-        elif user_move == "scissors" or user_move == "s":
+        else:
             return "comp"
         
     elif comp_move == "paper":
-        if user_move == "rock" or user_move == "r":
+        if user_move == "rock":
             return "comp"
-        elif user_move == "paper" or user_move == "p":
-            return "tie"
-        elif user_move == "scissors" or user_move == "s":
+        else:
             return "user"
         
     elif comp_move == "scissors":
-        if user_move == "rock" or user_move == "r":
+        if user_move == "rock":
             return "user"
-        elif user_move == "paper" or user_move == "p":
+        else:
             return "comp"
-        elif user_move == "scissors" or user_move == "s":
-            return "tie"
 
 
 def scorekeeper(comp_choice, user_input):
@@ -56,18 +53,32 @@ def scorekeeper(comp_choice, user_input):
 
 print("This is a game of Rock-Paper-Scissors")
 print("Your possible moves are: rock, paper, scissors, r, p or s")
-print("write 'quit' to terminate")
+print("Write 'quit' to terminate")
 print("Score: 0\n")
 
 while True:
 
     user_input = input("What's your move: ").lower()
     if user_input == "quit":
+        if score < 0:
+            print(f"The Computer won by {score} points!")
+        elif score > 0:
+            print(f"Congratulations! You won by {score} points!")
+        else:
+            print("The game was a tie!")
         break
     if not is_valid(user_input):
         print("Invalid Move")
         print("Your possible moves are: rock, paper, scissors, r, p or s\n")
         continue
+    
+    if user_input == "r":
+        user_input = "rock"
+    elif user_input == "s":
+        user_input = "scissors"
+    else:
+        user_input = "paper"
+        
     comp_choice = generate_random()
 
     scorekeeper(comp_choice, user_input)
